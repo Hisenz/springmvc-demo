@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
-    <title>${requestScope.exceptionName}</title>
+    <title>error</title>
 </head>
-    <h3>exception is appear : ${requestScope.exceptionName}</h3>
+    <h3>exception is appear </h3>
 </html>
