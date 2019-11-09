@@ -634,4 +634,45 @@ Spring MVC 拦截器类似于 servlet 中的 过滤器 Filter，用于对处理�
 
 3. 配置拦截器
 
+    ```xml
+     <!--  配置拦截器  -->
+        <mvc:interceptors>
+            <mvc:interceptor>
+                <mvc:mapping path="/interceptor/**"/>
+                <bean class="interceptor.CustomInterceptor"/>
+            </mvc:interceptor>
+        </mvc:interceptors>
+    ```
+
+### 2.6 Spring MVC 异常处理机制
+
+系统中异常包括两类：预期异常和运行时异常 RuntimeException，前者通过捕获异常从而获取异常信息，后者主要通过规范代码开发、测试等手段减少运行时异常的发生。
+
+系统的Dao、Service、Controller出现都通过 throws Exception 向上层抛出，最终由前端控制器交由异常处理器进行异常处理
+
+1. 异常处理方式
+
+    - 使用 Spring MVC 提供的简单异常处理器 SimpleMappingExceptionResolver
+    - 实现 Spring 的异常处理接口HandlerExceptionResolver自定义自己的异常处理机制
+
+2. 简单异常处理器 `SimpleMappingExceptionResolver`
+
+    Spring MVC 已经定义好了该类型转换器，在使用时可以根据项目情况进行相应的异常与视图的映射配置
+
+    ```xml
+    <!-- 配置简单映射异常处理器 -->
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <map>
+                <entry key="java.lang.ClassCastException" value="error"/>
+                <entry key="Exception" value="error"/>
+            </map>
+        </property>
+    </bean>
+    ```
+
+3. 自定义异常处理步骤
+
+    创建异常处理器类实现 HandlerExceptionResolver
+
     

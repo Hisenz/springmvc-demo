@@ -58,5 +58,13 @@
 
     <!--  mvc 注解驱动  -->
     <mvc:annotation-driven conversion-service="customConversionService"/>
-
+    <!--  配置简单映射异常处理器  -->
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <map>
+                <entry key="java.lang.ClassCastException" value="error"/>
+                <entry key="Exception" value="error"/>
+            </map>
+        </property>
+    </bean>
 </beans>
